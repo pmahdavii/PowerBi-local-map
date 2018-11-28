@@ -1,0 +1,48 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Longitude",
+            "name": "langpoint",
+            "kind": "Measure"
+        },
+		{
+            "displayName": "Latitude",
+            "name": "latpoint",
+            "kind": "Measure"
+        }
+    ],
+	"dataViewMappings": [
+		{
+            "conditions": [
+                {
+                    "langpoint": {
+                        "min": 0,
+                        "max": 1000000
+                    },
+					"latpoint": {
+                        "min": 0,
+                        "max": 1000000
+                    }
+                }
+            ],
+            "single": {
+                "role": "langpoint",
+				"role": "latpoint",
+				"role": "zoompoint"
+            }
+        }
+    ],
+    "objects": {
+        "dpmap": {
+            "displayName": "Map",
+            "properties": {
+                "showCluster": {
+                    "displayName": "Show Clusters",
+                    "type": {
+                        "bool": true
+                    }
+                }
+            }
+        }
+    }
+}
