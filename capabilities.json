@@ -2,33 +2,42 @@
     "dataRoles": [
         {
             "displayName": "Longitude",
-            "name": "langpoint",
-            "kind": "Measure"
+            "name": "longitude",
+            "kind": "Grouping"
         },
-		{
+        {
             "displayName": "Latitude",
-            "name": "latpoint",
-            "kind": "Measure"
+            "name": "latitude",
+            "kind": "Grouping"
+        },
+        {
+            "name": "tooltips",
+            "kind": "Grouping",
+            "displayName": "Tooltips"
         }
     ],
-	"dataViewMappings": [
-		{
-            "conditions": [
-                {
-                    "langpoint": {
-                        "min": 0,
-                        "max": 1000000
-                    },
-					"latpoint": {
-                        "min": 0,
-                        "max": 1000000
-                    }
+    "dataViewMappings": [
+        {
+            "table": {
+                "rows": {
+                    "select": [
+                        {
+                            "for": {
+                                "in": "latitude"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "longitude"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "tooltips"
+                            }
+                        }
+                    ]
                 }
-            ],
-            "single": {
-                "role": "langpoint",
-				"role": "latpoint",
-				"role": "zoompoint"
             }
         }
     ],

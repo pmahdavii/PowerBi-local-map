@@ -10176,8 +10176,8 @@ var powerbi;
                                 .setContent("مختصات:" + e.latlng.toString())
                                 .openOn(map);
                         }
-                        markers.addLayer(L.marker([35.680248, 51.405406]));
-                        markers.addLayer(L.marker([35.684825, 51.393292]));
+                        //markers.addLayer(L.marker([35.680248, 51.405406]));
+                        //markers.addLayer(L.marker([35.684825, 51.393292]));
                         map.addLayer(markers);
                     }
                     pmap.prototype.update = function (options) {
@@ -10191,7 +10191,22 @@ var powerbi;
                         else {
                             map.removeLayer(markers);
                         }
-                        console.log(options.dataViews[0]);
+                        // console.log(options.dataViews[0].table.columns);
+                        markers = new L.MarkerClusterGroup();
+                        var _a = options.dataViews[0].table, columns = _a.columns, rows = _a.rows;
+                        var datas = rows.map(function (row, idx) {
+                            var data = row.reduce(function (d, v, i) {
+                                var role = Object.keys(columns[i].roles)[0];
+                                d[role] = v;
+                                return d;
+                            }, {});
+                            //console.log(data);
+                            //console.log(data['longitude']);
+                            //console.log(data['latitude']);
+                            //console.log(data['tooltips']);
+                            markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }));
+                        });
+                        map.addLayer(markers);
                     };
                     pmap.parseSettings = function (dataView) {
                         console.log("DATAVIEW" + dataView);
@@ -10223,48 +10238,6 @@ var powerbi;
         })(visual = extensibility.visual || (extensibility.visual = {}));
     })(extensibility = powerbi.extensibility || (powerbi.extensibility = {}));
 })(powerbi || (powerbi = {}));
-/*
-module powerbi.extensibility.visual.pmap3515B81CCEAD4A41A9B63A977C32350F  {
-    "use strict";
-    export class Visual implements IVisual {
-        private target: HTMLElement;
-        private updateCount: number;
-        private settings: VisualSettings;
-        private textNode: Text;
-
-        constructor(options: VisualConstructorOptions) {
-            console.log('Visual constructor', options);
-            this.target = options.element;
-            this.updateCount = 0;
-            if (typeof document !== "undefined") {
-                const new_p: HTMLElement = document.createElement("p");
-                new_p.appendChild(document.createTextNode("Update count:"));
-                const new_em: HTMLElement = document.createElement("em");
-                this.textNode = document.createTextNode(this.updateCount.toString());
-                new_em.appendChild(this.textNode);
-                new_p.appendChild(new_em);
-                this.target.appendChild(new_p);
-            }
-        }
-
-        public update(options: VisualUpdateOptions) {
-            this.settings = Visual.parseSettings(options && options.dataViews && options.dataViews[0]);
-            console.log('Visual update', options);
-            if (typeof this.textNode !== "undefined") {
-                this.textNode.textContent = (this.updateCount++).toString();
-            }
-        }
-
-        private static parseSettings(dataView: DataView): VisualSettings {
-            return VisualSettings.parse(dataView) as VisualSettings;
-        }
-
-        public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
-            return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
-        }
-    }
-}
-*/ 
 var powerbi;
 (function (powerbi) {
     var visuals;
