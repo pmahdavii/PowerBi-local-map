@@ -25,16 +25,16 @@
  */
 
 module powerbi.extensibility.visual {
-    "use strict";
-    import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
+  "use strict";
+  import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
 
-    export class VisualSettings extends DataViewObjectsParser {
-      public dataPoint: dataPointSettings = new dataPointSettings();
-      }
+  export class VisualSettings extends DataViewObjectsParser {
+    public dataPoint: dataPointSettings = new dataPointSettings();
+  }
 
-    export class dataPointSettings {
-     // Show all
-	  public showCluster: boolean = true;
-     }
+  export class dataPointSettings {
+    // Showing
+    public showCluster: boolean = true;
+  }
 
 }

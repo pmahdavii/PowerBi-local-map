@@ -11,5 +11,3 @@ zooming in to see the points
 Turning off clusters to see the raw map
 ![Map Tiles in a server with custom marker](http://www.pmahdavi.ir/wp-content/uploads/2018/12/Screenshot-453.png)
 Map Tiles in a server with custom marker
-
-This plugin is under development.now the he only problem is I cant understand how to get the entries from user  (I cant edit the 'compabilities.json' file in the correct way!).
