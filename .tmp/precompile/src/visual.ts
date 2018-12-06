@@ -69,7 +69,7 @@ module powerbi.extensibility.visual.pmap3515B81CCEAD4A41A9B63A977C32350F  {
                 //console.log(data['longitude']);
                 //console.log(data['latitude']);
                 //console.log(data['tooltips']);
-                markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }));
+                markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }).bindPopup(data['tooltips']));
             });
             map.addLayer(markers);
 

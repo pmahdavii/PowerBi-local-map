@@ -10204,7 +10204,7 @@ var powerbi;
                             //console.log(data['longitude']);
                             //console.log(data['latitude']);
                             //console.log(data['tooltips']);
-                            markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }));
+                            markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }).bindPopup(data['tooltips']));
                         });
                         map.addLayer(markers);
                     };
