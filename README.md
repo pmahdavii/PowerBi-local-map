@@ -3,6 +3,8 @@ This is a Offline map viewer in powerbi using Leafletjs and Leaflet Clustering p
 It uses Leaflet Markercluster plugin for clustering points that their given in the report,in map.
 this plugin loads map tiles from your given url in the codes.right now, its "localhost/mapfiles".
 you can use your personal marker and shadow.
+Note:
+Due to changes in leaflet-markercluster.js file, please dont run 'npm install' and dont update leaflet-markercluster!
 ![Clustering Points in map with leaflet markercluster plugin](http://www.pmahdavi.ir/wp-content/uploads/2018/12/Screenshot-459.png)
 Clustering Points in map with leaflet markercluster plugin
 ![zooming in to see the points](http://www.pmahdavi.ir/wp-content/uploads/2018/12/Screenshot-460.png)

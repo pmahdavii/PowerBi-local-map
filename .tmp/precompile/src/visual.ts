@@ -3,6 +3,7 @@ module powerbi.extensibility.visual.pmap3515B81CCEAD4A41A9B63A977C32350F  {
     var L = typeof L !== 'undefined' ? L : window['L'];
     var map: L.Map;
     var markers;
+    var iconimg;
     var showing = true;
     //exporting value from visual format tab
     export function getValue<T>(objects: DataViewObjects, objectName: string, propertyName: string, defaultValue: T): T {
@@ -26,6 +27,22 @@ module powerbi.extensibility.visual.pmap3515B81CCEAD4A41A9B63A977C32350F  {
             this.target = options.element; //selects the target for adding Map div
             this.target.innerHTML = '<div id="mapy" style="height:100vh;width:100vw;"></div>'; //adding map div
             map = L.map('mapy').setView([35.658, 51.403], 10); //selects map center view
+            iconimg = L.icon({
+                iconUrl: "http://localhost/mapfiles/marker-icon.png",
+                iconRetinaUrl: "http://localhost/mapfiles/marker-icon-2x.png",
+                shadowUrl: "http://localhost/mapfiles/marker-shadow.png",
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                tooltipAnchor: [16, -28],
+                shadowSize: [41, 41]
+            });  //creates custom icon for your markers. upload those pictures in a host or localhost and put the links here.
+            /*
+                Pictures are already uploaded here:
+                http://www.pmahdavi.ir/projects/powerbi-offline-map/marker-icon.png
+                http://www.pmahdavi.ir/projects/powerbi-offline-map/marker-icon-2x.png
+                http://www.pmahdavi.ir/projects/powerbi-offline-map/marker-shadow.png
+            */
             L.tileLayer('http://localhost/mapfiles/{z}/{x}/{y}.png', { maxZoom: 17, minZoom: 10 }).addTo(map); //adds the map layer from the url and sets max and min zoom
             map.on('click', clickdid); //sets click function
             function clickdid(e) {
@@ -57,7 +74,7 @@ module powerbi.extensibility.visual.pmap3515B81CCEAD4A41A9B63A977C32350F  {
                     d[role] = v;
                     return d;
                 }, {});
-                markers.addLayer(L.marker([data['latitude'], data['longitude']], { title: data['tooltips'] }).bindPopup(data['tooltips']));
+                markers.addLayer(L.marker([data['latitude'], data['longitude']], { icon: iconimg, title: data['tooltips'] }).bindPopup(data['tooltips']));
             });
             map.addLayer(markers);
 
