@@ -1,5 +1,5 @@
 # PowerBi Local Map
-This is a Offline map viewer in powerbi using Leafletjs and Leaflet Clustering plugin.
+This is an Offline map viewer in powerbi using Leafletjs and Leaflet Clustering plugin.
 It uses Leaflet Markercluster plugin for clustering points that their given in the report,in map.
 this plugin loads map tiles from your given url in the codes.right now, its "localhost/mapfiles".
 you can use your personal marker and shadow.
